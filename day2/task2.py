@@ -9,7 +9,11 @@ for i in range(n):
     working_days = int(input("Enter total working days: "))
     present_days = int(input("Enter present days: "))
     rating = float(input("Enter performance rating (0 to 5): "))
-
+ 
+    if present_days > working_days:
+        print("error")
+    else:
+        continue
     # Attendance calculation
     attendance_percentage = (present_days / working_days) * 100
 
