@@ -6,13 +6,19 @@ def create_account(name):
 
 def deposit(balance, amount):
     """Deposit money"""
+    if amount<=0:
+        print("invalid")
+        return balance
     balance += amount
     print("Deposit successful")
     return balance
-
+    
 
 def withdraw(balance, amount):
     """Withdraw money"""
+    if amount<=0:
+        print("invalid")
+        return balance
     if amount > balance:
         print("Insufficient balance")
     else:
