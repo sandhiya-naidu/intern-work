@@ -1,5 +1,6 @@
 import csv
 import json
+import os
 
 # User Input
 name = input("Enter Name: ")
@@ -12,35 +13,53 @@ student = {
     "Skills": skills
 }
 
-# Write into TXT file
-with open("student.txt", "w") as file:
+# ---------------- TXT FILE ----------------
+
+with open("student.txt", "a") as file:
     file.write(f"Name: {name}\n")
     file.write(f"Email: {email}\n")
     file.write(f"Skills: {', '.join(skills)}\n")
+    file.write("-" * 30 + "\n")
 
-# Read TXT file
 print("\nReading TXT File")
 with open("student.txt", "r") as file:
     print(file.read())
 
-# Write into CSV file
-with open("student.csv", "w", newline="") as file:
+# ---------------- CSV FILE ----------------
+
+file_exists = os.path.exists("student.csv")
+
+with open("student.csv", "a", newline="") as file:
     writer = csv.writer(file)
-    writer.writerow(["Name", "Email", "Skills"])
+
+    # Write header only once
+    if not file_exists or os.path.getsize("student.csv") == 0:
+        writer.writerow(["Name", "Email", "Skills"])
+
     writer.writerow([name, email, ", ".join(skills)])
 
-# Read CSV file
 print("\nReading CSV File")
 with open("student.csv", "r") as file:
     reader = csv.reader(file)
     for row in reader:
         print(row)
 
-# Write into JSON file
-with open("student.json", "w") as file:
-    json.dump(student, file, indent=4)
+# ---------------- JSON FILE ----------------
 
-# Read JSON file
+if os.path.exists("student.json"):
+    with open("student.json", "r") as file:
+        try:
+            students = json.load(file)
+        except json.JSONDecodeError:
+            students = []
+else:
+    students = []
+
+students.append(student)
+
+with open("student.json", "w") as file:
+    json.dump(students, file, indent=4)
+
 print("\nReading JSON File")
 with open("student.json", "r") as file:
     data = json.load(file)

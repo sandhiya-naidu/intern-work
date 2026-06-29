@@ -1,0 +1,16 @@
+[
+    {
+        "Name": "san",
+        "Email": "sandyan30gmail.com",
+        "Skills": [
+            "python"
+        ]
+    },
+    {
+        "Name": "kk",
+        "Email": "kkgmail.com",
+        "Skills": [
+            "sql"
+        ]
+    }
+]
