@@ -1,6 +1,6 @@
 import re
 
-print("=== User Registration ===")
+print(" User Registration ")
 
 username = input("Enter Username: ")
 email = input("Enter Email: ")
